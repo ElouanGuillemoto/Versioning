@@ -1,46 +1,37 @@
-const mongoose = require('mongoose');
+const express = require('express');
+const router = express.Router();
+const RequestType = require('../models/RequestType.js');
 
-const requestTypeSchema = new mongoose.Schema(
-  {
-    code: {
-      type: String,
-      required: true,
-      unique: true,
-      trim: true,
-    },
-    name: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    description: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    priority: {
-      type: String,
-      enum: ['low', 'medium', 'high', 'critical'],
-      default: 'medium',
-    },
-    category: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    estimatedResponseTime: {
-      type: Number, // en heures
-      default: null,
-    },
-    isActive: {
-      type: Boolean,
-      default: true,
-    },
-  },
-  {
-    timestamps: true, // createdAt & updatedAt
-  },
-);
+// GET /api/request-types
+router.get('/', async (req, res) => {
+  try {
+    const types = await RequestType.find({ isActive: true });
+    res.json(types);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
-// Exporter le modèle
-module.exports = mongoose.model('RequestType', requestTypeSchema);
+// GET /api/request-types/:id
+router.get('/:id', async (req, res) => {
+  try {
+    const type = await RequestType.findById(req.params.id);
+    if (!type) return res.status(404).json({ error: 'Not found' });
+    res.json(type);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// POST /api/request-types
+router.post('/', async (req, res) => {
+  try {
+    const newType = new RequestType(req.body);
+    const savedType = await newType.save();
+    res.status(201).json(savedType);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+module.exports = router;

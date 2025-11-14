@@ -1,22 +1,16 @@
 const mongoose = require('mongoose');
-const RequestType = require('../src/models/RequestType');
+const RequestType = require('../src/models/RequestType.js');
 
-// Connexion à MongoDB
-const mongoUri =
-  process.env.MONGO_URI || 'mongodb://localhost:27017/support-api';
+const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/support-api';
 
 mongoose
-  .connect(mongoUri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected'))
   .catch((err) => {
     console.error('MongoDB connection error:', err);
     process.exit(1);
   });
 
-// Données initiales
 const requestTypes = [
   {
     code: 'TECH_ISSUE',
@@ -25,7 +19,7 @@ const requestTypes = [
     priority: 'high',
     category: 'technical',
     estimatedResponseTime: 24,
-    isActive: true,
+    isActive: true
   },
   {
     code: 'BILLING_QUESTION',
@@ -34,7 +28,7 @@ const requestTypes = [
     priority: 'medium',
     category: 'billing',
     estimatedResponseTime: 48,
-    isActive: true,
+    isActive: true
   },
   {
     code: 'ACCOUNT_CHANGE',
@@ -43,7 +37,7 @@ const requestTypes = [
     priority: 'medium',
     category: 'account',
     estimatedResponseTime: 24,
-    isActive: true,
+    isActive: true
   },
   {
     code: 'FEATURE_REQUEST',
@@ -52,7 +46,7 @@ const requestTypes = [
     priority: 'low',
     category: 'feature',
     estimatedResponseTime: 72,
-    isActive: true,
+    isActive: true
   },
   {
     code: 'COMPLAINT',
@@ -61,14 +55,13 @@ const requestTypes = [
     priority: 'critical',
     category: 'support',
     estimatedResponseTime: 12,
-    isActive: true,
-  },
+    isActive: true
+  }
 ];
 
-// Fonction d’insertion
 const seedDatabase = async () => {
   try {
-    await RequestType.deleteMany(); // Supprime les anciennes données
+    await RequestType.deleteMany();
     await RequestType.insertMany(requestTypes);
     console.log('Database seeded successfully!');
     mongoose.disconnect();
@@ -78,5 +71,4 @@ const seedDatabase = async () => {
   }
 };
 
-// Exécution
 seedDatabase();
