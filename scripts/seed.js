@@ -2,7 +2,8 @@ const mongoose = require('mongoose');
 const RequestType = require('../src/models/RequestType');
 
 // Connexion à MongoDB
-const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/support-api';
+const mongoUri =
+  process.env.MONGO_URI || 'mongodb://localhost:27017/support-api';
 
 mongoose
   .connect(mongoUri, {

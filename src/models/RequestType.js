@@ -39,7 +39,7 @@ const requestTypeSchema = new mongoose.Schema(
   },
   {
     timestamps: true, // createdAt & updatedAt
-  }
+  },
 );
 
 // Exporter le modèle
