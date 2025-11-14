@@ -1,4 +1,5 @@
 name: Workflow
+
 on:
   push:
     branches: [main, develop]
@@ -6,23 +7,39 @@ on:
     branches: [main, develop]
 
 jobs:
-  lint:
+  code-quality:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v3
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-      
+
       - name: Install dependencies
         run: npm ci
-      
-      - name: Run ESLint
+
+      - name: ESLint
         run: npm run lint
-      
-      - name: Check formatting
+
+      - name: Prettier
         run: npm run format:check
+
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
