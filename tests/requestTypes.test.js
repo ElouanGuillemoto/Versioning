@@ -1,6 +1,6 @@
 const request = require('supertest');
 const express = require('express');
-const requestTypesRouter = require('../src/routes/requestTypes.js');
+const requestTypesRouter = require('../src/routes/RequestTypes.cjs');
 
 const app = express();
 app.use(express.json());
