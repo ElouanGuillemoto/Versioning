@@ -12,4 +12,3 @@ test('GET /health should return status ok', async () => {
   expect(res.statusCode).toBe(200);
   expect(res.body.status).toBe('ok');
 });
-

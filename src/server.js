@@ -5,7 +5,8 @@ const requestTypesRouter = require('./routes/requestTypes.js');
 const app = express();
 app.use(express.json());
 
-const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/support-api';
+const mongoUri =
+  process.env.MONGO_URI || 'mongodb://localhost:27017/support-api';
 mongoose.connect(mongoUri).then(() => console.log('MongoDB connected'));
 
 app.use('/api/request-types', requestTypesRouter);
