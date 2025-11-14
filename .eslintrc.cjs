@@ -3,7 +3,7 @@ module.exports = {
     browser: false,
     node: true,
     es2021: true,
-    jest: true, 
+    jest: true,
   },
   extends: ['eslint:recommended', 'prettier'],
   parserOptions: {
