@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const RequestType = require('../src/models/RequestType.js');
+const RequestType = require('../src/models/RequestType.cjs');
 
 const mongoUri =
   process.env.MONGO_URI || 'mongodb://localhost:27017/support-api';
