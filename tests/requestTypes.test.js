@@ -14,15 +14,15 @@ app.use('/api/request-types', requestTypesRouter);
 beforeAll(async () => {
   mongoServer = await MongoMemoryServer.create();
   const uri = mongoServer.getUri();
-  await mongoose.connect(uri, { dbName: "testdb" });
+  await mongoose.connect(uri, { dbName: 'testdb' });
 
   await RequestType.create({
-    code: "TECH_ISSUE",
-    name: "Problème technique",
-    description: "Un test",
-    category: "tech",
-    priority: "medium",
-    estimatedResponseTime: 4
+    code: 'TECH_ISSUE',
+    name: 'Problème technique',
+    description: 'Un test',
+    category: 'tech',
+    priority: 'medium',
+    estimatedResponseTime: 4,
   });
 });
 
@@ -34,10 +34,7 @@ describe('Request Types API', () => {
   });
 });
 
-
 afterAll(async () => {
   await mongoose.disconnect();
   await mongoServer.stop();
 });
-
-

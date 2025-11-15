@@ -3,12 +3,12 @@ const RequestType = require('../models/RequestType.cjs');
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const types = await RequestType.find();
     res.json(types);
   } catch (error) {
-    res.status(500).json({ error: "Erreur serveur" });
+    res.status(500).json({ error: 'Erreur serveur' });
   }
 });
 
@@ -33,4 +33,3 @@ router.post('/', async (req, res) => {
 });
 
 module.exports = router;
-

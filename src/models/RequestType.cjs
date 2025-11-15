@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const RequestTypeSchema = new mongoose.Schema({
   code: { type: String, required: true, unique: true },
   name: { type: String, required: true },
-  description: { type: String }
+  description: { type: String },
 });
 
 module.exports = mongoose.model('RequestType', RequestTypeSchema);
@@ -44,4 +44,4 @@ router.post('/', async (req, res) => {
 });
 
 module.exports = router;
-module.exports = mongoose.model("RequestType", RequestTypeSchema);
+module.exports = mongoose.model('RequestType', RequestTypeSchema);
