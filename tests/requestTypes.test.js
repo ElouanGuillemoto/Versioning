@@ -1,14 +1,16 @@
 const request = require('supertest');
 const express = require('express');
-const requestTypesRouter = require('../src/routes/RequestTypes.cjs');
+const requestTypesRouter = require('../src/routes/requestTypes.cjs');
 
 const app = express();
 app.use(express.json());
 app.use('/api/request-types', requestTypesRouter);
 
-test('GET /health should return status ok', async () => {
-  app.get('/health', (req, res) => res.json({ status: 'ok' }));
-  const res = await request(app).get('/health');
-  expect(res.statusCode).toBe(200);
-  expect(res.body.status).toBe('ok');
+describe('Request Types API', () => {
+  it('GET /api/request-types should return array', async () => {
+    const res = await request(app).get('/api/request-types');
+    expect(res.status).toBe(200);
+    expect(Array.isArray(res.body)).toBe(true);
+  });
 });
+
