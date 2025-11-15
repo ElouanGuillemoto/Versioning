@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const RequestType = require('../models/RequestType.cjs');
+const RequestType = require('../models/requestTypes.cjs');
 
 // GET /api/request-types
 router.get('/', async (req, res) => {

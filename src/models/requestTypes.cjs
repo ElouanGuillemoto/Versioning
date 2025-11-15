@@ -3,7 +3,6 @@ const RequestType = require('../models/RequestType.cjs');
 
 const router = express.Router();
 
-// GET all active types
 router.get('/', async (req, res) => {
   try {
     const types = await RequestType.find({ isActive: true });
@@ -13,7 +12,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// GET by ID
 router.get('/:id', async (req, res) => {
   try {
     const item = await RequestType.findById(req.params.id);
@@ -24,7 +22,6 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// POST create
 router.post('/', async (req, res) => {
   try {
     const type = new RequestType(req.body);
@@ -36,3 +33,4 @@ router.post('/', async (req, res) => {
 });
 
 module.exports = router;
+
