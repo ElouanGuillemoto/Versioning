@@ -3,12 +3,12 @@ const RequestType = require('../models/RequestType.cjs');
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    const types = await RequestType.find({ isActive: true });
+    const types = await RequestType.find();
     res.json(types);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+  } catch (error) {
+    res.status(500).json({ error: "Erreur serveur" });
   }
 });
 
