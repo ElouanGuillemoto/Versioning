@@ -2,7 +2,7 @@ const request = require('supertest');
 const express = require('express');
 const mongoose = require('mongoose');
 const { MongoMemoryServer } = require('mongodb-memory-server');
-const requestTypesRouter = require('../src/routes/requestTypes.cjs');
+const requestTypesRouter = require('../src/models/requestTypes.cjs');
 const RequestType = require('../src/models/RequestType.cjs');
 
 let mongoServer;
