@@ -1,6 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const RequestType = require('../models/requestTypes.cjs');
+const mongoose = require('mongoose');
+
+const RequestTypeSchema = new mongoose.Schema({
+  code: { type: String, required: true, unique: true },
+  name: { type: String, required: true },
+  description: { type: String }
+});
+
+module.exports = mongoose.model('RequestType', RequestTypeSchema);
 
 // GET /api/request-types
 router.get('/', async (req, res) => {
